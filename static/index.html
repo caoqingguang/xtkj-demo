@@ -7,6 +7,8 @@
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></script>
     <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src='/mapbox/mapbox-gl.js'></script>
+    <link href='/mapbox/mapbox-gl.css' rel='stylesheet' />
 </head>
 <body>
 <div class="container">
@@ -66,10 +68,18 @@
         </div>
     </div>
     <!-- 以下是 业务代码 -->
-    <div style="width:100%;height:600px;border:2px solid red;background:green;">
+    <div id="map" style="width:100%;height:600px;border:2px solid red;background:green;">
         这里是地图数据
     </div>
 </div>
+
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiY2FvcWluZ2d1YW5nIiwiYSI6ImNqNWdybTRocDFic2YzM256cmlqbGppYmYifQ.E1YhS9BrHlsfC24XH_RJcw';
+    var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v10'
+    });
+</script>
 
 </body>
 </html>
