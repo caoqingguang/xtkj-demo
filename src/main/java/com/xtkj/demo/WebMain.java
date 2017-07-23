@@ -8,6 +8,7 @@ import ratpack.guice.Guice;
 import ratpack.registry.Registry;
 import ratpack.server.RatpackServer;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 
@@ -20,7 +21,8 @@ public class WebMain {
         RatpackServer.start(rss->{
             System.out.println(System.getenv("PORT"));
             int port = Integer.parseInt(System.getenv("PORT"));
-            rss.serverConfig(ssb->ssb.port(port).baseDir(Paths.get("static")))
+            Path aStatic = Paths.get("static").toAbsolutePath();
+            rss.serverConfig(ssb->ssb.port(port).baseDir(aStatic))
                     .handlers(chain->{
                 chain.get("time",ctx->{
                     ctx.render(new Date().toString());
