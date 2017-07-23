@@ -1,10 +1,10 @@
 /*
 !/src
+!/static
 !.gitignore
 !pom.gradle
 !config.conf
 !readme.md
 !system.properties
 !Procfile
-!app.json
-
+!pom.xml
