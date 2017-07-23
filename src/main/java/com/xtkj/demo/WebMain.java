@@ -19,12 +19,12 @@ public class WebMain {
     public static void main(String[] args) throws Exception {
         RatpackServer.start(rss->{
             System.out.println(System.getenv("PORT"));
-            rss.serverConfig(ssb->ssb.port(Integer.parseInt(System.getenv("PORT")))).handlers(chain->{
+            int port = Integer.parseInt(System.getenv("PORT"));
+            rss.serverConfig(ssb->ssb.port(port).baseDir(Paths.get("static")))
+                    .handlers(chain->{
                 chain.get("time",ctx->{
-                    ctx.render(new Date().toString());
-                }).all(ctx->{
-                    ctx.render("this is caoqingguang server");
-                });
+                    ctx.render(new Date().toString()).;
+                }).files();
             });
         });
 //        //1.全部配置
