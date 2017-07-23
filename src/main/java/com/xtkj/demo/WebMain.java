@@ -23,7 +23,7 @@ public class WebMain {
             rss.serverConfig(ssb->ssb.port(port).baseDir(Paths.get("static")))
                     .handlers(chain->{
                 chain.get("time",ctx->{
-                    ctx.render(new Date().toString()).;
+                    ctx.render(new Date().toString());
                 }).files();
             });
         });
