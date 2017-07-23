@@ -18,6 +18,7 @@ public class WebMain {
 
     public static void main(String[] args) throws Exception {
         RatpackServer.start(rss->{
+            System.out.println(System.getenv("PORT"));
             rss.serverConfig(ssb->ssb.port(Integer.parseInt(System.getenv("PORT")))).handlers(chain->{
                 chain.get("time",ctx->{
                     ctx.render(new Date().toString());

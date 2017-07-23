@@ -4,4 +4,6 @@
 !pom.gradle
 !config.conf
 !readme.md
+!system.properties
+!Procfile
 
