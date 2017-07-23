@@ -1,4 +1,5 @@
 /*
+!pom.xml
 !/src
 !/static
 !.gitignore
@@ -6,5 +7,5 @@
 !readme.md
 !system.properties
 !Procfile
-!pom.xml
+
 
