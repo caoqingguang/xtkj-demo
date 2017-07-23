@@ -42,11 +42,11 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
-        <dependency>
+ <!--       <dependency>
             <groupId>postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>9.2-1002.jdbc4</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>com.j256.ormlite</groupId>
             <artifactId>ormlite-jdbc</artifactId>
