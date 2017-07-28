@@ -24,12 +24,12 @@ public class WebModule extends AbstractModule{
 
     @Override
     protected void configure() {
-        scan("com.xtkj.demo").forEach(clazz->{
+        scanBean("com.xtkj.demo").forEach(clazz->{
             bind(clazz).in(Singleton.class);
         });
     }
 
-    private Set<Class<?>> scan(String packageNamePrefix){
+    private Set<Class<?>> scanBean(String packageNamePrefix){
         ConfigurationBuilder configBuilder =
                 new ConfigurationBuilder()
                         .filterInputsBy(new FilterBuilder().includePackage(packageNamePrefix))

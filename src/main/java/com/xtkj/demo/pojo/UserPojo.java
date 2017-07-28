@@ -1,5 +1,6 @@
 package com.xtkj.demo.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 /**
@@ -9,5 +10,9 @@ import lombok.Data;
 public class UserPojo {
     private Integer id;
     private String name;
+    @JsonIgnore
+    private String password;
+    @JsonIgnore
+    private String token;
     private String phone;
 }
