@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>兴腾 GIS</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src='./mapbox/mapbox-gl.js'></script>
+    <link href='./mapbox/mapbox-gl.css' rel='stylesheet' />
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                    <img src="./img/logo.png" class="navbar-brand">
+                    <!--<a class="navbar-brand" href="#"></a>-->
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="#">首页</a>
+                        </li>
+                        <li>
+                            <a href="#">任务管理</a>
+                        </li>
+                        <li>
+                            <a href="#">数据报表</a>
+                        </li>
+                        <li>
+                            <a href="#">人员管理</a>
+                        </li>
+                        <li class="更多">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">更多功能 <span class="badge">5</span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">功能1-1</a>
+                                </li>
+                                <li>
+                                    <a href="#">功能1-2</a>
+                                </li>
+                                <li>
+                                    <a href="#">功能1-3</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">功能2</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">功能3</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-right" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="输入建筑名称"/>
+                        </div> <button type="submit" class="btn btn-default">查询</button>
+                    </form>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- 以下是 业务代码 -->
+    <div id="map" style="width:100%;height:600px;border:2px solid red;background:green;">
+    </div>
+</div>
+
+<!--114:26E 38:03N-->
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiY2FvcWluZ2d1YW5nIiwiYSI6ImNqNWdybTRocDFic2YzM256cmlqbGppYmYifQ.E1YhS9BrHlsfC24XH_RJcw';
+    var sjz=new mapboxgl.LngLat(-114.26, 38.03)
+    var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v10',
+    center:[114.26, 38.03],
+    minZoom:2,
+    zoom:6
+    });
+</script>
+
+</body>
+</html>
