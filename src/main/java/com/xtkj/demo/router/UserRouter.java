@@ -32,11 +32,22 @@ public class UserRouter {
         UserPojo userByName = userService.getUserByName(user);
         LoginVo result;
         if(userByName!=null&&userByName.getPassword().equals(password)){
+            setCookie(ctx,userByName);
             result=LoginVo.success("/");
         }else {
             result=LoginVo.error("用户名密码错误");
         }
         ctx.render(JsonTool.obj2Str(result));
+    }
+
+    @BgUrl("/usr/check")
+    public void loginCheck(Context ctx){
+        UserPojo user = getUser(ctx);
+        if(user==null){
+            ctx.redirect(302,"/login.html");
+        }else{
+            ctx.redirect(302,"/index.html");
+        }
     }
 
     @BgUrl("/usr/logout")
@@ -56,6 +67,11 @@ public class UserRouter {
         Cookie access_token = ctx.getResponse().expireCookie(UserService.cookieFlag);
         access_token.setPath("/");
         access_token.setMaxAge(0);
+    }
+
+    UserPojo getUser(Context ctx){
+        String token = ctx.getRequest().oneCookie(UserService.cookieFlag);
+        return userService.getUserByToken(token);
     }
 
 }
