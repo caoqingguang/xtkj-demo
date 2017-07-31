@@ -29,6 +29,30 @@
             background:rgba(0,0,0,0.25);
         }
     </style>
+<script type="text/javascript">
+function login(){
+    $.ajax({
+        type: 'POST',
+        url: '/usr/login',
+        contentType: "application/json",
+        dataType: "json",
+        async: true,
+        data: JSON.stringify({
+            user: $('#inputuser').val(),
+            password: $('#inputpassword').val(),
+        }),
+        success: function (result) {
+            if (result.login) {
+                //alert(result.redirectUrl);
+                window.location.href=result.redirectUrl
+            } else{
+               alert(result.errMsg);
+            }
+        }
+
+    })
+}
+</script>
 </head>
 <body>
     <div class="container vertical-center">
@@ -47,7 +71,7 @@
                 <div class="checkbox">
                     <label><input type="checkbox" value="remember-me"/> 记住我</label>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">确认</button>
+                <button class="btn btn-lg btn-primary btn-block" type="button" onclick="login()">确认</button>
             </form>
         </div>
     </div>

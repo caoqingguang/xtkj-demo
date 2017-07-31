@@ -30,8 +30,9 @@ public class AllRouter implements Action<Chain> {
 
     @Override
     public void execute(Chain chain) throws Exception {
-        chain.files(fhs->fhs.indexFiles("index.html"));
+        chain.files(fhs->fhs.indexFiles("default.html"));
         regUrls(chain.getRegistry(),"com.xtkj.demo.router").forEach(handler->handler.regUrl(chain));
+        TemplateRouter.templatePages(chain);
     }
 
     private List<AutoRegHandler> regUrls(Registry registry, String packageNamePrefix) {

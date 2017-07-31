@@ -1,5 +1,7 @@
 package com.xtkj.demo.router;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.xtkj.demo.annotation.BgMethod;
 import com.xtkj.demo.annotation.BgUrl;
 import com.xtkj.demo.annotation.RegBean;
 import com.xtkj.demo.pojo.UserPojo;
@@ -25,19 +27,24 @@ public class UserRouter {
     @Inject
     private UserService userService;
 
-    @BgUrl("/usr/login")
+    @BgUrl(value = "/usr/login",methods = BgMethod.POST)
     public void login(Context ctx){
-        String user = ctx.getRequest().getQueryParams().get("user");
-        String password = ctx.getRequest().getQueryParams().get("password");
-        UserPojo userByName = userService.getUserByName(user);
-        LoginVo result;
-        if(userByName!=null&&userByName.getPassword().equals(password)){
-            setCookie(ctx,userByName);
-            result=LoginVo.success("/");
-        }else {
-            result=LoginVo.error("用户名密码错误");
-        }
-        ctx.render(JsonTool.obj2Str(result));
+        ctx.getRequest().getBody().then(body->{
+            JsonNode jsonNode = JsonTool.str2Json(body.getText());
+            String user = jsonNode.get("user").asText();
+            String password = jsonNode.get("password").asText();
+            UserPojo userByName = userService.getUserByName(user);
+            LoginVo result;
+            if(userByName!=null&&userByName.getPassword().equals(password)){
+                setCookie(ctx,userByName);
+                result=LoginVo.success("/home");
+            }else {
+                cleanCookie(ctx);
+                result=LoginVo.error("用户名密码错误");
+            }
+            ctx.render(JsonTool.obj2Str(result));
+        });
+
     }
 
     @BgUrl("/usr/check")
@@ -46,7 +53,7 @@ public class UserRouter {
         if(user==null){
             ctx.redirect(302,"/login.html");
         }else{
-            ctx.redirect(302,"/index.html");
+            ctx.redirect(302,"/home");
         }
     }
 

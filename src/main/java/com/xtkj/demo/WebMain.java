@@ -1,18 +1,14 @@
 package com.xtkj.demo;
 
-import com.google.common.base.Strings;
 import com.google.inject.Injector;
 import com.xtkj.demo.conf.ConfManager;
 import com.xtkj.demo.guice.WebModule;
 import com.xtkj.demo.router.AllRouter;
-import com.xtkj.demo.router.Router;
 import ratpack.guice.Guice;
-import ratpack.registry.Registry;
 import ratpack.server.RatpackServer;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Date;
 
 /**
  * Created by caoqingguang on 2017/7/2.

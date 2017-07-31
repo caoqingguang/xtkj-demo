@@ -60,6 +60,12 @@
             <version>1.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>1.7</version>
+        </dependency>
+
 
 
         <!-- pojo 简化操作工具-->

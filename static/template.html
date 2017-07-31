@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title>Bootstrap 实例 - 折叠面板</title>
+	<link rel="stylesheet" href="/lib/bootstrap/bootstrap.min.css">
+	<script src="/lib/jquery/jquery.min.js"></script>
+	<script src="/lib/bootstrap/bootstrap.min.js"></script>
+</head>
+<body style="margin:0px;padding:0px">
+
+<div class="container" style="width:100%;padding:0px;">
+<div class="row" style="height:50px;margin-right:20px;margin-left:20px;">
+
+		<div class="navbar-header">
+			<img src="/img/logo.png" class="navbar-brand">
+			我的系统
+		</div>
+		<b>${group.title}/${page.title}</b>
+		<div class="navbar-right">
+			欢迎<span>${username}</span>
+			<a href="/usr/logout" class="btn btn-default">退出</a>
+		</div>
+</div>
+
+<div class="row clearfix">
+<!-- 左侧导航栏开始-->
+<div class="col-md-2 column">
+	<div class="panel-group" id="accordion">
+		#foreach(${g} in $nav)
+		<div class="panel #if($g==$group) panel-info #else panel-success #end">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" 
+					   href="#${g.title}">
+						${g.title}
+					</a>
+				</h4>
+			</div>
+			<div id="${g.title}" class="panel-collapse collapse #if($g==$group) in #end">
+				<div class="panel-body">
+					<ul class="nav nav-pills nav-stacked">
+						#foreach($p in ${g.pages})
+						<li #if($p==$page) class="active" #end><a href="${p.position}">${p.title}</a></li>
+						#end
+					</ul>
+				</div>
+			</div>
+		</div>
+		#end
+	</div>
+</div>
+<!-- 左侧导航栏结束-->
+<!-- 右侧内容 开始-->
+
+<div class="col-md-10 column">
+		#include("${page.position}.html")
+</div>
+<!-- 右侧内容 开始-->
+</div>
+</div>
+
+</body>
+</html>
