@@ -67,6 +67,8 @@ public class TemplateRouter {
             VelocityEngine ve = new VelocityEngine();
             System.out.println(Paths.get("static").toAbsolutePath().toString());
             ve.addProperty(RuntimeConstants.FILE_RESOURCE_LOADER_PATH, Paths.get("static").toAbsolutePath().toString());
+            ve.addProperty(RuntimeConstants.INPUT_ENCODING,"UTF8");
+            ve.addProperty(RuntimeConstants.OUTPUT_ENCODING,"UTF8");
             ve.init();
             Template template = ve.getTemplate("template.html","utf-8");
             VelocityContext ctx = new VelocityContext();
